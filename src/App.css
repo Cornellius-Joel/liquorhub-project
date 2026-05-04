@@ -1,0 +1,276 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #1C1C1C; /* Charcoal Black */
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #FFD700; /* Gold accents for text */
+  border-bottom: 2px solid #FFD700; /* Gold accent line */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.6); /* Depth effect */
+}
+
+
+.App-link {
+  color: #FFD700; /* Gold accent for links */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.App-link:hover {
+  color: #B8860B; /* Deep amber on hover for warmth */
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body{}
+.product_img {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+  border: 2px solid #FFD700; /* Gold border for premium feel */
+  background-color: #1C1C1C; /* Charcoal black background */
+  padding: 5px;
+  border-radius: 8px; /* Smooth edges for elegance */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product_img:hover {
+  transform: scale(1.05); /* Subtle zoom effect */
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4); /* Gold glow on hover */
+}
+form {
+  background-color: #1C1C1C; /* Charcoal black form background */
+  color:#FFD700;; /* Warm white text for readability */
+  padding: 100px;
+  border: 4px solid #FFD700; /* Gold border */
+  border-radius: 3px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.6);
+  max-width: 100%;
+  margin: 10px auto;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4)
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #FFD700; /* Gold labels */
+}
+img
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #000000; /* Pure black input fields */
+  border: 1px solid #FFD700; /* Gold outline */
+  border-radius: 4px;
+  color: #000000; /* White text inside inputs */
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #B8860B; /* Deep amber on focus */
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  outline: none;
+}
+
+button {
+  background-color: #141313;   /* dark background */
+  color: #e7c70f;              /* golden text */
+  border: 2px solid #e7c70f;   /* golden margin/border */
+  padding: 10px 20px;
+  border-radius: 6px;          /* optional: rounded corners */
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4)
+}
+.social-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin: 5px;
+}
+button:hover {
+  background-color: #1f1f1f;   /* slightly lighter black on hover */
+  border-color: #ffd700;       /* brighter gold outline */
+  color: #ffd700;              /* brighter gold text */
+  box-shadow: 0 0 8px #ffd700; /* glowing effect */
+}
+
+input, textarea, select {
+  background-color: #141313;   /* dark background */
+  color: #e7c70f;              /* golden text */
+  border: 1px solid #e7c70f;   /* golden outline */
+  padding: 8px;
+  border-radius: 4px;          /* optional: smooth corners */
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;               /* remove default blue outline */
+  border: 1px solid #ffd700;   /* brighter golden glow */
+  box-shadow: 0 0 5px #ffd700; /* subtle glow effect */
+}
+.bg-dark {
+  background-color: #141313 !important;
+}
+
+button:hover {
+  background-color: #B8860B; /* Amber hover */
+  transform: scale(1.05);
+}
+#root, .App {
+  background-color: #141313;
+  color: #e7c70f;
+  min-height: 100vh; /* ensures full coverage */
+}
+html, body, #root, .App {
+  background-color: #141313 !important;
+  color: #e7c70f;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: #141313; /* Charcoal black background */
+  color: #e7c70f; /* Warm white text for readability */
+  line-height: 1.6;
+}
+
+a {
+  color: #FFD700; /* Gold links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #B8860B; /* Amber hover effect */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #FFD700; /* Gold headings */
+  margin-bottom: 0.5em;
+}
+
+button {
+  background-color: #FFD700; /* Gold buttons */
+  color: #1C1C1C; /* Charcoal text */
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #B8860B; /* Amber hover */
+  transform: scale(1.05);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  background-color: #000000; /* Pure black code blocks */
+  color: #FFD700; /* Gold text */
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.navbar {
+  background-color: #1C1C1C; /* Charcoal black background */
+  border-bottom: 2px solid #FFD700; /* Gold accent line */
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  color: #FFD700; /* Gold logo text */
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: #B8860B; /* Amber hover */
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav li a {
+  color: #FFD700; /* Gold links */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding: 5px 0;
+}
+
+.navbar-nav li a:hover {
+  color: #B8860B; /* Amber hover */
+  border-bottom: 2px solid #FFD700; /* Gold underline on hover */
+}
+
+.navbar-toggler {
+  border: none;
+  background: transparent;
+  color: #FFD700; /* Gold hamburger icon */
+  font-size: 1.2rem;
+}
+/* Search bar inside Navbar */
+.form-control {
+  background-color: #2A2A2A;   /* slightly lighter charcoal */
+  color: #F5F5F5;              /* warm white text */
+  border: 1px solid #FFD700;   /* gold border */
+  border-radius: 20px;         /* pill shape */
+  padding: 6px 12px;
+}
+.form-control::placeholder {
+  color: #999999;              /* subtle placeholder */
+}
+.form-control:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 6px #FFD700; /* gold glow on focus */
+}
+.navbar .form-control {
+  width: 220px;
+  background-color: #2A2A2A;
+  color: #F5F5F5;
+  border: 1px solid #FFD700;
+  border-radius: 20px;
+}
+
+
