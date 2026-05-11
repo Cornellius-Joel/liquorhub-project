@@ -1,5 +1,6 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { Component, useState } from 'react'
+
 
 const AddProduct = () => {
   const [product_name,setProductName]=useState("")
@@ -26,13 +27,14 @@ const AddProduct = () => {
       data.append("product_cost",product_cost)
       data.append("product_photo",product_photo)
 
-      const response=await axios.post("https://cornellius.alwaysdata.net//api/add_product",data)
+      const response=await axios.post("https://cornellius.alwaysdata.net/api/add_product",data)
       setLoading("")
       setSuccess(response.data.message)
 
       setProductName("")
       setProductDescription("")
       setProductCost("")
+      setProductPhoto(null)
       
     
       

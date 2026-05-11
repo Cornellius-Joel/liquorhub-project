@@ -1,14 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../components/CartContext'   // 🛒 Import CartContext
 
 const Navbar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("")
+  const { cartItems } = useContext(CartContext)        // 🛒 Access cart state
+
+  // 🔐 Get logged-in user
+  const user = JSON.parse(localStorage.getItem("user"))
+
+  // ⚠️ TEMP admin check (since your API has no role)
+  const isAdmin = user?.role === "admin"
 
   const handleChange = (e) => {
     const term = e.target.value
     setSearchTerm(term)
-    onSearch(term)   // send term up to App
+    onSearch(term)
   }
+
+  // 🛒 Calculate total quantity (not just item count)
+  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0)
 
   return (
     <div className='row'>
@@ -26,17 +37,52 @@ const Navbar = ({ onSearch }) => {
           <div className='collapse navbar-collapse' id='navbarcollapse'>
             <div className='navbar-nav me-auto'>
               <Link to={"/"} className="nav-link active text-warning">Home</Link>
-              <Link to={"/addproduct"} className="nav-link text-warning">Add Product</Link>
-              <Link to={"/signin"} className="nav-link text-warning">Signin</Link>
-              <Link to={"/signup"} className="nav-link text-warning">Signup</Link>
+
+              {/* 🔒 Show ONLY for admin */}
+              {isAdmin && (
+                <Link to={"/addproduct"} className="nav-link text-warning">
+                  Add Product
+                </Link>
+              )}
+
+              {!user && (
+                <>
+                  <Link to={"/signin"} className="nav-link text-warning">Signin</Link>
+                  <Link to={"/signup"} className="nav-link text-warning">Signup</Link>
+                </>
+              )}
+
+              {user && (
+                <>
+                  <span className="nav-link text-warning">
+                    Welcome, {user.email}
+                  </span>
+                  {isAdmin && (
+                    <Link to="/admin" className="nav-link text-warning">Admin Dashboard</Link>
+                  )}
+                  <button
+                    className="btn btn-sm btn-outline-warning ms-2"
+                    onClick={() => {
+                      localStorage.removeItem("user");
+                      window.location.href = "/signin"; // redirect to signin
+                    }}
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
+
+              {/* 🛒 Cart link */}
+              <Link to="/cart" className="nav-link text-warning">
+                Cart ({totalQuantity})
+              </Link>
             </div>
 
-            {/* Live search bar */}
-            <input 
-              className="form-control ms-auto" 
-              type="search" 
-              placeholder="Search products..." 
-              aria-label="Search" 
+            {/* 🔍 Live search */}
+            <input
+              className="form-control ms-auto"
+              type="search"
+              placeholder="Search products..."
               value={searchTerm}
               onChange={handleChange}
             />

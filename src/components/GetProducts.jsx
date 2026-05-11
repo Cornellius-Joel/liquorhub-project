@@ -1,16 +1,20 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import { CartContext } from '../components/CartContext'   // ✅ correct path
 
-const GetProducts = ({ searchTerm }) => {
+const GetProducts = ({ searchTerm, isAdmin, editProduct, deleteProduct }) => {
   const [products, setProducts] = useState([])
   const [error, setError] = useState("")
   const [loading, setLoading] = useState("")
 
   const navigate = useNavigate()
   const img_url = "https://cornellius.alwaysdata.net/static/images/"
+
+  // 🛒 Access cart functions + feedback message + lastAddedId
+  const { addToCart, message, lastAddedId } = useContext(CartContext)
 
   const getProducts = async () => {
     setError("")
@@ -55,12 +59,45 @@ const GetProducts = ({ searchTerm }) => {
                 <h5 className="mt-2 text-info">{product.product_name}</h5> <hr />
                 <h5 className="text-info">{product.product_description}</h5>
                 <h5 className="text-warning mb-3">ksh {product.product_cost}</h5>
+
+                {/* 🛒 Add to Cart button */}
+                <button
+                  className="btn btn-warning mb-2"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
+
+                {/* ✅ Show feedback only for this product */}
+                {lastAddedId === product.product_id && (
+                  <p className="text-success mt-2">{message}</p>
+                )}
+
+                {/* Existing Buy Now button */}
                 <button
                   className="btn btn-dark text-warning "
                   onClick={() => navigate("/makepayment", { state: { product } })}
                 >
                   Buy Now
                 </button>
+
+                {/* Admin-only controls */}
+                {isAdmin && (
+                  <div className="d-flex justify-content-between mt-3">
+                    <button 
+                      className="btn btn-warning btn-sm"
+                      onClick={() => editProduct(product)}
+                    >
+                      Edit
+                    </button>
+                    <button 
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteProduct(product.product_id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
