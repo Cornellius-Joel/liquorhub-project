@@ -31,6 +31,22 @@ const Chatbot = () => {
         reply = "To place an order, add items to your cart and proceed to checkout.";
       } else if (lower.includes("cart")) {
         reply = "Your cart shows all items you’ve selected. You can access it from the Cart page.";
+      } else if (lower.includes("order") || lower.includes("buy")) {
+        reply = "To place an order, add items to your cart and proceed to checkout.";
+      } else if (lower.includes("cart")) {
+        reply = "Your cart shows all items you’ve selected. You can access it from the Cart page.";
+      } else if (lower.includes("payment") || lower.includes("mpesa")) {
+        reply = "We support Lipa na M-Pesa. At checkout, enter your phone number to complete payment.";
+      } else if (lower.includes("delivery") || lower.includes("shipping")) {
+        reply = "We deliver across Nairobi. Please provide your delivery address at checkout.";
+      } else if (lower.includes("location")) {
+        reply = "Enable location access so we can deliver faster and more accurately.";
+      } else if (lower.includes("admin") || lower.includes("dashboard")) {
+        reply = "Admins can manage products and view orders from the Admin Dashboard.";
+      } else if (lower.includes("help") || lower.includes("support")) {
+        reply = "Need help? Our chatbot is here 24/7, or you can contact customer support.";
+      } else {
+        reply = "Sorry, I didn’t understand that. Try asking about signup, order, cart, payment, or delivery.";
       }
 
       setMessages(prev => [...prev, { from: "bot", text: reply }]);

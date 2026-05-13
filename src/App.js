@@ -9,19 +9,20 @@ import MakePayment from './components/MakePayment';
 import GetProducts from './components/GetProducts';
 import Navbar from './components/Navbar';
 import NotFound from './components/NotFound';
-import Footer from './components/Footer';   // ✅ ensure filename matches
+import Footer from './components/Footer';
 
 import React, { useState } from 'react';
 import Chatbot from './components/Chatbot';
 import AdminRoute from './components/AdminRoute';
 import AdminDashboard from './components/AdminDashboard';
 
-// 🛒 Import Cart + CartProvider
 import Cart from './components/Cart';
 import { CartProvider } from './components/CartContext';
 
-// ✅ Import ProtectedRoute
 import ProtectedRoute from './components/ProtectedRoute';
+
+// ✅ Import LocationPrompt
+import LocationPrompt from './components/LocationPrompt';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,14 +39,15 @@ function App() {
             <h1>Liquor Hub.co.ke</h1>
           </header>
 
-          {/* Navbar gets user + setUser */}
+          {/* 🔔 Location popup */}
+          <LocationPrompt />
+
           <Navbar onSearch={setSearchTerm} user={user} setUser={setUser} />
           
           <Routes>
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Signin setUser={setUser} />} />
             
-            {/* Protected routes */}
             <Route 
               path='/addproduct' 
               element={
@@ -63,7 +65,6 @@ function App() {
               } 
             />  
 
-            {/* ✅ Protect MakePayment */}
             <Route 
               path='/makepayment' 
               element={

@@ -5,18 +5,26 @@ import { useLocation, Link } from 'react-router-dom'
 const MakePayment = ({ user }) => {
   const { product, cartItems } = useLocation().state || {}
   const [phone, setPhone] = useState("")
-  const [delivery, setDelivery] = useState("")   // ✅ new state for delivery address
+  const [delivery, setDelivery] = useState("")   // delivery address
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
 
   const img_url = "https://cornellius.alwaysdata.net/static/images/"
 
-  // ✅ Calculate total depending on source
-  const calculateTotal = () => {
+  // ✅ Fixed delivery fee (can be dynamic later)
+  const DELIVERY_FEE = 200
+
+  // ✅ Calculate subtotal (without delivery)
+  const calculateSubtotal = () => {
     if (cartItems) {
       return cartItems.reduce((acc, item) => acc + item.product_cost * item.quantity, 0)
     }
     return product ? product.product_cost : 0
+  }
+
+  // ✅ Grand total = subtotal + delivery fee
+  const calculateTotal = () => {
+    return calculateSubtotal() + DELIVERY_FEE
   }
 
   // 🚫 Block non-logged users
@@ -35,9 +43,9 @@ const MakePayment = ({ user }) => {
     setMessage("Please wait as we process payment...")
     try {
       const data = new FormData()
-      data.append("amount", calculateTotal())
+      data.append("amount", calculateTotal()) // ✅ includes delivery fee
       data.append("phone", phone)
-      data.append("delivery_address", delivery)   // ✅ include delivery address
+      data.append("delivery_address", delivery)
 
       await axios.post("http://cornellius.alwaysdata.net/api/mpesa_payment", data)
       setMessage("Payment request sent successfully ✅")
@@ -81,7 +89,10 @@ const MakePayment = ({ user }) => {
             </div>
           )}
 
-          <h3 className="text-success">Total: ksh {calculateTotal()}</h3>
+          {/* ✅ Show breakdown */}
+          <h3 className="text-success">Subtotal: ksh {calculateSubtotal()}</h3>
+          <h4 className="text-info">Delivery Fee: ksh {DELIVERY_FEE}</h4>
+          <h2 className="text-success">Grand Total: ksh {calculateTotal()}</h2>
 
           <form onSubmit={submit}>
             <p>Phone that will make Payment</p>
